@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+  <title id="title">Habit</title>
+  <desc id="desc">Original, round and flowing handwritten Habit lettering on a quiet dark surface.</desc>
+  <rect width="720" height="160" rx="8" fill="#171a18"/>
+  <g transform="translate(161 15)" fill="none" stroke="#eceee9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M62 37Q58 69 51 106M125 33C124 56 117 83 116 101Q116 114 132 105L140 96M57 79Q88 65 122 72"/>
+    <path d="M180 79C172 66 151 73 144 92C137 112 153 117 167 103L182 80L178 102Q178 118 197 103L205 94"/>
+    <path d="M200 105C205 85 209 52 216 34C222 21 234 30 229 44C222 65 210 77 207 98C217 77 238 75 245 88C254 105 231 120 215 108Q242 117 263 99"/>
+    <path d="M268 86L266 102Q266 117 285 104L293 96M310 50L304 97Q303 116 319 111Q328 108 334 99M292 76Q311 71 331 74"/>
+  </g>
+  <circle cx="432" cy="81" r="5" fill="#eceee9"/>
+</svg>
