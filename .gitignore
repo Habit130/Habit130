@@ -1,1 +1,9 @@
 .DS_Store
+
+# Machine-specific agent context.
+.local/*
+!.local/README.md
+
+# Frozen owner-machine session handoffs.
+docs/orchestration/handoffs/*.md
+!docs/orchestration/handoffs/README.md
