@@ -1,16 +1,21 @@
 # Build and Verification
 
-The repository currently contains Markdown governance and repository metadata.
+The product is the English `README.md`, equivalent `README.zh-CN.md`, and
+self-contained static SVG headers in `assets/profile/`.
 No product build, lint, test, packaging, deployment, or CI command is configured.
 Do not invent package scripts or treat unavailable checks as passed.
 
 ## Required order
 
-1. Inspect changed files, links, paths, commands, and contract scope.
-2. Run whitespace and governance structure checks.
+1. Refresh the issue/comments and baseline; inspect changed files, project
+   README references, links, paths, prose equivalence, and contract scope.
+2. Run whitespace, governance structure, and static profile/SVG checks.
 3. Verify ignore behavior.
-4. Inspect the final diff and live GitHub settings.
-5. After commit and push, verify the exact PR head and delivery evidence.
+4. Inspect actual rendered previews in both languages, at desktop and 375px,
+   in light/dark modes, including GitHub branch README previews; check the
+   light-image fallback, final diff, and live GitHub settings.
+5. Check staged whitespace/scope; after commit and push, verify the exact PR
+   head, status rollup, and delivery evidence. Follow the issue's command order.
 
 ## Commands
 
@@ -25,6 +30,76 @@ Do not invent package scripts or treat unavailable checks as passed.
 | Tracked README exceptions | `git check-ignore .local/README.md docs/orchestration/handoffs/README.md` | No output; exit 1 is expected |
 | Final staged scope | `git diff --cached --stat` | Only confirmed artifacts |
 | Final delivery diff | `git diff origin/main...HEAD` | Inspect after commit |
+
+## Static profile/SVG check
+
+Run from the repository root after both profile files and final assets exist.
+This standard-library-only check verifies local links, nonempty image
+alternatives, parseable SVGs, and the absence of active/external resources.
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+from urllib.parse import urlsplit, unquote
+import re
+import xml.etree.ElementTree as ET
+
+root = Path.cwd().resolve()
+def check_local(target):
+    parsed = urlsplit(target)
+    if parsed.scheme or parsed.netloc or not parsed.path:
+        return
+    path = (root / unquote(parsed.path).lstrip('/')).resolve()
+    assert path == root or root in path.parents, target
+    assert path.is_file(), target
+
+for name, counterpart in [('README.md', 'README.zh-CN.md'),
+                          ('README.zh-CN.md', 'README.md')]:
+    text = (root / name).read_text()
+    assert counterpart in text, f'{name}: missing language switch'
+    for target in re.findall(r'!?\[[^\]]*\]\(([^)\s]+)', text):
+        check_local(target)
+    for target in re.findall(r'(?:src|srcset)="([^"]+)"', text):
+        check_local(target)
+    images = re.findall(r'<img\b[^>]*>', text)
+    assert images and all(re.search(r'\balt="[^"]+"', image) for image in images), name
+
+assets = list((root / 'assets/profile').glob('*.svg'))
+assert assets, 'No final SVG assets'
+banned = {'script', 'foreignObject', 'animate', 'animateMotion',
+          'animateTransform', 'set', 'image', 'text'}
+for path in assets:
+    svg = ET.parse(path).getroot()
+    assert svg.tag.rsplit('}', 1)[-1] == 'svg' and 'viewBox' in svg.attrib, path
+    for element in svg.iter():
+        assert element.tag.rsplit('}', 1)[-1] not in banned, path
+        for key, value in element.attrib.items():
+            key = key.rsplit('}', 1)[-1]
+            assert not key.lower().startswith('on'), (path, key)
+            if key == 'href':
+                assert value.startswith('#'), (path, value)
+    source = path.read_text()
+    assert '@font-face' not in source and '@import' not in source, path
+    for resource in re.findall(r'url\(\s*([^)]+)\)', source, flags=re.I):
+        assert resource.strip().strip("'\"").startswith('#'), (path, resource)
+print('PASS: profile files, local references, image alternatives, and static SVG checks')
+PY
+```
+
+## Visual and semantic inspection
+
+Static checks cannot establish original lettering, bilingual equivalence,
+faithful personal/project claims, attribution, contrast, clipping, or layout.
+Inspect those separately. For a new wordmark, provide three actual rendered
+options and record habit's selection before finalizing the header.
+
+Keep candidate sources, renderer/tooling outputs, and screenshots exclusively
+in the allocated worktree's ignored `.local/profile-preview/` directory.
+Use existing tools or isolated local tooling; record actual renderer, viewport,
+mode, image-load/overflow results, and source revision. A GitHub Markdown API
+preview is a useful local aid, not a replacement for the branch README view.
+Do not start an unallocated server or silently treat unavailable rendering
+as passed. No global software or product runtime is needed for this profile.
 
 ## Operational constraints
 
