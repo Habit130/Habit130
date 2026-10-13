@@ -19,7 +19,9 @@ GitHub issue 是唯一验收合同正文。
 ## Related repositories
 
 主页精选三个项目组，顺序固定；关联仓库只作为公开内容来源，
-不属于本仓库的修改范围：
+其产品代码与内容不属于本仓库的修改范围。公开 description 元数据的
+例外须经 habit 明确批准，并由 issue 指定仓库、字段与精确目标值；
+不构成其他仓库设置或账号管理的授权：
 
 1. LLM-assisted input exploration：
    [Habit130/squirrel](https://github.com/Habit130/squirrel) 与

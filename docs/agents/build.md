@@ -8,14 +8,26 @@ Do not invent package scripts or treat unavailable checks as passed.
 ## Required order
 
 1. Refresh the issue/comments and baseline; inspect changed files, project
-   README references, links, paths, prose equivalence, and contract scope.
+    README references, links, paths, prose equivalence, and contract scope.
+   For approved description deliveries, snapshot public metadata/control
+   descriptions, branch-protection summaries and pin order before changes.
 2. Run whitespace, governance structure, and static profile/SVG checks.
-3. Verify ignore behavior.
+3. Verify ignore behavior. For explicitly approved description-only deliveries,
+   re-read each field immediately before its own operation.
+   Only the issue's observed-old value may be replaced; target means verified
+   no-op, any third value pauses that operation. Use only the exact authorized
+   description command, log exit/output and fresh readback, and compare unchanged
+   settings/pins. Permission denial stops; no alternate endpoint or blind rollback.
 4. Inspect actual rendered previews in both languages, at desktop and 375px,
    in light/dark modes, including GitHub branch README previews; check the
    light-image fallback, final diff, and live GitHub settings.
 5. Check staged whitespace/scope; after commit and push, verify the exact PR
    head, status rollup, and delivery evidence. Follow the issue's command order.
+
+Description edits publish immediately, independently of the README PR; record
+before/after values and this timing in the PR/handback. Inspect actual public
+cards separately from API readback and report cache delay honestly. A protected
+branch flag alone does not establish every protection rule.
 
 ## Commands
 
@@ -86,6 +98,18 @@ print('PASS: profile files, local references, image alternatives, and static SVG
 PY
 ```
 
+## Project-copy budget and semantics
+
+For copy-polish deliveries, run the issue's standard-library budget/link block
+after the unchanged static check above. Count only the three visible project
+entries, including labels but excluding Markdown destinations/formatting;
+the frozen issue supplies English-word/Chinese-character limits and exact links.
+Preserve a readable baseline/final comparison and refresh public project README
+sources (the reranking plugin uses `master`). Inspect bilingual meaning, project
+order, experimental/in-progress status, CV workflow, upstream attribution and
+the professional-diagnosis limitation separately; source docs are not runtime
+or performance verification. Compare artwork/picture blocks with the baseline.
+
 ## Visual and semantic inspection
 
 Static checks cannot establish original lettering, bilingual equivalence,
@@ -98,6 +122,11 @@ in the allocated worktree's ignored `.local/profile-preview/` directory.
 Use existing tools or isolated local tooling; record actual renderer, viewport,
 mode, image-load/overflow results, and source revision. A GitHub Markdown API
 preview is a useful local aid, not a replacement for the branch README view.
+When the issue permits cached native rendering, preserve actual branch server
+HTML and unmodified GitHub CSS with source URLs/digests and exact pushed head;
+record renderer/settings, image/link/overflow measurements and baseline/new
+mobile comparisons. Qualify offline/dynamic-chrome limits; old screenshots or
+custom mockup CSS alone do not prove new branch presentation.
 Do not start an unallocated server or silently treat unavailable rendering
 as passed. No global software or product runtime is needed for this profile.
 
